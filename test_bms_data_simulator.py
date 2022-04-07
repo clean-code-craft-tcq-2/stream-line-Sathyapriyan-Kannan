@@ -41,3 +41,5 @@ class TestDrivenRangesTest(unittest.TestCase):
         bms_data = bms_data_simulator.BMSDataSimulator(bms_range, 50)
         self.assertTrue(type(bms_data.generate_samples_for_a2d_sensor()), list)
         self.assertTrue(type(bms_data.generate_samples_for_a2d_sensor()[0]), dict)
+
+unittest.main()
