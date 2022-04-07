@@ -42,4 +42,6 @@ class TestDrivenRangesTest(unittest.TestCase):
         self.assertTrue(type(bms_data.generate_samples_for_a2d_sensor()), list)
         self.assertTrue(type(bms_data.generate_samples_for_a2d_sensor()[0]), dict)
 
-unittest.main()
+
+if __name__ == '__main__':
+    unittest.main()
