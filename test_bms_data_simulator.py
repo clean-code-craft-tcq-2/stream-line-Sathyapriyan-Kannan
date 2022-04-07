@@ -4,6 +4,12 @@ import bms_data_simulator
 
 
 class TestDrivenRangesTest(unittest.TestCase):
+    def test_bms_range_data(self):
+        bms_range = bms_ranges.BMSManagement(30, 40, 10)
+        self.assertEqual(bms_range.max_current, 30)
+        self.assertEqual(bms_range.max_temp, 40)
+        self.assertEqual(bms_range.max_bits, 10)
+
     def test_bms_data_simulator(self):
         bms_range = bms_ranges.BMSManagement(30, 40, 10)
         bms_data = bms_data_simulator.BMSDataSimulator(bms_range, 50)
@@ -43,5 +49,4 @@ class TestDrivenRangesTest(unittest.TestCase):
         self.assertTrue(type(bms_data.generate_samples_for_a2d_sensor()[0]), dict)
 
 
-if __name__ == '__main__':
-    unittest.main()
+unittest.main()
