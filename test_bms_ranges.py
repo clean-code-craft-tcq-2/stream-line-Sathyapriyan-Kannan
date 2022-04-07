@@ -9,3 +9,5 @@ class TestDrivenRangesTest(unittest.TestCase):
         self.assertEqual(bms_range.max_temp, 40)
         self.assertEqual(bms_range.max_bits, 10)
 
+unittest.main()
+

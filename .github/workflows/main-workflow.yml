@@ -27,6 +27,7 @@ jobs:
       - name: Run and collect coverage
         run: |
           coverage run --branch test_bms_data_simulator.py
+          coverage run --branch test_bms_ranges.py
           coverage html
           coverage report
       - name: Upload coverage
