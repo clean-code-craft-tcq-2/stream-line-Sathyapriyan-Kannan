@@ -1,4 +1,5 @@
 import random
+import bms_ranges
 
 
 def print_readings_in_console(data_sets):
@@ -50,3 +51,8 @@ class BMSDataSimulator:
             bms_data.append({'Current': current_data_samples[i], 'Temperature': temperature_data_samples[i]})
         print_readings_in_console(bms_data)
         return bms_data
+
+
+bms_range = bms_ranges.BMSManagement(30, 40, 10)
+bms_data = BMSDataSimulator(bms_range, 50)
+bms_data.generate_samples_for_a2d_sensor()
