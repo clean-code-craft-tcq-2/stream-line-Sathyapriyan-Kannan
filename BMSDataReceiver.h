@@ -1,0 +1,1 @@
+void ReadDataFromConsole(void);
