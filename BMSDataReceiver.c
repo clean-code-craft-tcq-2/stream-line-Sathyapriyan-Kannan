@@ -16,7 +16,7 @@ float findAverage(int data[])
     }
     else
     {
-        for(int i=0; i<NoOfSamples);i++)
+        for(int i=0; i<NoOfSamples; i++)
         {
             sum += data[i];
         }
