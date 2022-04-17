@@ -66,7 +66,9 @@ void ReadDataFromConsole(int current[], int temperature[])
 
 void receiverSideHandling(int current[], int temperature[])
 {
-  int maxTemp, minTemp, maxCurrent, minCurrent, averageCurrentof5Samples, averagTemperatureof5Samples;
+  int maxTemp, minTemp, maxCurrent, minCurrent;
+  float averageCurrentof5Samples, averagTemperatureof5Samples;
+  char buffer[200];
   ReadDataFromConsole(current,temperature);
   maxTemp = findMaximum(current);
   minTemp = findMinimum(current);
@@ -74,4 +76,7 @@ void receiverSideHandling(int current[], int temperature[])
   minCurrent = findMinimum(temperature);
   averageCurrentof5Samples = findAverage(current);
   averagTemperatureof5Samples = findAverage(temperature);
+  sprintf(buffer,"MinTemperature: %d, MaxTemperature: %d, AverageTemperature: %d, MinCurrent: %d, MaxCurrent: %d, AverageCurrennt: %d",
+         minTemp,maxTemp,minCurrent,averagTemperatureof5Samples,minCurrent,maxCurrent,averageCurrentof5Samples);
+  printf("%s\n",buffer);
 }
