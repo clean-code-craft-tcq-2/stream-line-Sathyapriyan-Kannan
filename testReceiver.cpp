@@ -5,7 +5,7 @@
 
 TEST_CASE("Verify Read parameters from file - Valid Case") {
   int current[NoOfSamples], temperature[NoOfSamples];
-  void (*fn_ptrPrintOutput)(char);
+  void (*fn_ptrPrintOutput)(char*);
   fn_ptrPrintOutput = &printOnConsole;
-  receiverSideHandling(current,temperature);
+  receiverSideHandling(current,temperature,fn_ptrPrintOutput);
 }
