@@ -4,5 +4,6 @@
 #include "BMSDataReceiver.h"
 
 TEST_CASE("Verify Read parameters from file - Valid Case") {
-  ReadDataFromConsole();
+  int current[NoOfSamples], temperature[NoOfSamples];
+  receiverSideHandling(current,temperature);
 }
