@@ -18,6 +18,12 @@ jobs:
           pip install flake8
           pip install coverage
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      
+      - name: install coverage tool for receiver
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcovr
+          
       - name: Lint with flake8
         run: |
           # stop the build if there are Python syntax errors or undefined names
@@ -36,11 +42,12 @@ jobs:
           path: ./htmlcov
           retention-days: 21
           
-      - name: install coverage tool for receiver
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y gcovr
-        
+      - name: build receiver
+        run: g++ -Wall -Wextra -fprofile-arcs -ftest-coverage -o testchecker *.c*
+          
+      - name: Pipeline sender/receiver
+        run: --branch test_bms_data_simulator.py | ./testchecker
+          
       - name: build receiver
         run: g++ -Wall -Wextra -fprofile-arcs -ftest-coverage -o testchecker *.c*
       
