@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include "BMSDataReceiver.h"
 
+void printOnConsole(char message[])
+{
+    printf("%s\n",message);
+}
+
 float findAverage(int data[])
 {
     int sum;
@@ -64,11 +69,11 @@ void ReadDataFromConsole(int current[], int temperature[])
     }
 }
 
-void receiverSideHandling(int current[], int temperature[])
+char* receiverSideHandling(int current[], int temperature[], void (*fn_ptrPrintOutput)(char message[]))
 {
   int maxTemp, minTemp, maxCurrent, minCurrent;
   float averageCurrentof5Samples, averagTemperatureof5Samples;
-  char buffer[200];
+  char message[200];
   ReadDataFromConsole(current,temperature);
   maxTemp = findMaximum(current);
   minTemp = findMinimum(current);
@@ -76,7 +81,8 @@ void receiverSideHandling(int current[], int temperature[])
   minCurrent = findMinimum(temperature);
   averageCurrentof5Samples = findAverage(current);
   averagTemperatureof5Samples = findAverage(temperature);
-  sprintf(buffer,"MinTemperature: %d, MaxTemperature: %d, AverageTemperature: %d, MinCurrent: %d, MaxCurrent: %d, AverageCurrennt: %d",
+  sprintf(message,"MinTemperature: %d, MaxTemperature: %d, AverageTemperature: %d, MinCurrent: %d, MaxCurrent: %d, AverageCurrennt: %d",
          minTemp,maxTemp,minCurrent,averagTemperatureof5Samples,minCurrent,maxCurrent,averageCurrentof5Samples);
-  printf("%s\n",buffer);
+  fn_ptrPrintOutput(message);
+  return message;
 }
