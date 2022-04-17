@@ -69,7 +69,7 @@ void ReadDataFromConsole(int current[], int temperature[])
     }
 }
 
-char* receiverSideHandling(int current[], int temperature[], void (*fn_ptrPrintOutput)(char message[]))
+void receiverSideHandling(int current[], int temperature[], void (*fn_ptrPrintOutput)(char message[]))
 {
   int maxTemp, minTemp, maxCurrent, minCurrent;
   float averageCurrentof5Samples, averagTemperatureof5Samples;
@@ -82,7 +82,6 @@ char* receiverSideHandling(int current[], int temperature[], void (*fn_ptrPrintO
   averageCurrentof5Samples = findAverage(current);
   averagTemperatureof5Samples = findAverage(temperature);
   sprintf(message,"MinTemperature: %d, MaxTemperature: %d, AverageTemperature: %f, MinCurrent: %d, MaxCurrent: %d, AverageCurrennt: %f",
-         minTemp,maxTemp,minCurrent,averagTemperatureof5Samples,minCurrent,maxCurrent,averageCurrentof5Samples);
+         minTemp,maxTemp,averagTemperatureof5Samples,minCurrent,maxCurrent,averageCurrentof5Samples);
   fn_ptrPrintOutput(message);
-  return *message;
 }
