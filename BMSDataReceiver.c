@@ -2,6 +2,55 @@
 #include <stdlib.h>
 #include "BMSDataReceiver.h"
 
+float findAverage(int data[])
+{
+    int sum;
+    float average;
+    if(NoOfSamples >= 5)
+    {
+        for(int i=(NoOfSamples-1); i>(NoOfSamples-6);i--)
+        {
+            sum += data[i];
+        }
+        average = sum/5;
+    }
+    else
+    {
+        for(int i=0; i<NoOfSamples);i++)
+        {
+            sum += data[i];
+        }
+        average = sum/NoOfSamples;
+    }
+    return average;
+}
+
+int findMinimum(int data[])
+{
+    int Minimum = data[0];
+    for(int i=1; i<NoOfSamples; i++)
+    {
+        if(Minimum > data[i])
+        {
+            Minimum = data[i];
+        }
+    }
+    return Minimum;
+}
+
+int findMaximum(int data[])
+{
+    int Maximum = data[0];
+    for(int i=1; i<NoOfSamples; i++)
+    {
+        if(Maximum < data[i])
+        {
+            Maximum = data[i];
+        }
+    }
+    return Maximum;
+}
+
 void ReadDataFromConsole(int current[], int temperature[])
 {
     char unusedData[50];
@@ -17,10 +66,12 @@ void ReadDataFromConsole(int current[], int temperature[])
 
 void receiverSideHandling(int current[], int temperature[])
 {
-  printf("Running Receiver\n");
+  int maxTemp, minTemp, maxCurrent, minCurrent, averageCurrentof5Samples, averagTemperatureof5Samples;
   ReadDataFromConsole(current,temperature);
-   for(int i=0; i<NoOfSamples; i++)
-   {
-      printf("Current: %d, Temperature: %d\n",current[i],temperature[i]);
-   }
+  maxTemp = findMaximum(current);
+  minTemp = findMinimum(current);
+  maxCurrent = findMaximum(temperature);
+  minCurrent = findMinimum(temperature);
+  averageCurrentof5Samples = findAverage(current);
+  averagTemperatureof5Samples = findAverage(temperature);
 }
