@@ -46,7 +46,7 @@ jobs:
         run: g++ -Wall -Wextra -fprofile-arcs -ftest-coverage -o testchecker *.c*
           
       - name: Pipeline sender/receiver
-        run: coverage run --branch test_bms_data_simulator.py | ./testchecker
+        run: python test_bms_data_simulator.py | ./testchecker
       
       - name: run receiver
         run: ./testchecker
