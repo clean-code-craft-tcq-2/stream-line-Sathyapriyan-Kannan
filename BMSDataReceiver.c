@@ -4,5 +4,5 @@
 
 void ReadDataFromConsole(void)
 {
-  printf("Running Receiver");
+  printf("Running Receiver\n");
 }
