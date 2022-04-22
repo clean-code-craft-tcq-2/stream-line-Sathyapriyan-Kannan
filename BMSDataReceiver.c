@@ -59,7 +59,7 @@ int findMaximum(int data[])
 void ReadDataFromConsole(int current[], int temperature[])
 {
     char unusedData[50];
-    int currentInASCII, temperatureinASCII;
+    char *currentInASCII, *temperatureinASCII;
     for(int i=0; i<NoOfSamples; i++)
     {
         scanf("%50s",unusedData);
