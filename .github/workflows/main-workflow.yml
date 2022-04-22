@@ -47,9 +47,6 @@ jobs:
           
       - name: Pipeline sender/receiver
         run: python bms_data_simulator.py | ./testchecker
-      
-      - name: run receiver
-        run: ./testchecker
 
       - name: collect coverage
         run: gcovr --gcov-exclude=".*test.*" -r . --html --html-details -o coverage.html --print-summary
