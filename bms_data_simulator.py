@@ -4,7 +4,7 @@ import bms_ranges
 
 def print_readings_in_console(data_sets):
     for data_set in data_sets:
-        print(data_set)
+        print('{},{}'.format(data_set['Current'], data_set['Temperature']))
 
 
 class BMSDataSimulator:
@@ -29,8 +29,9 @@ class BMSDataSimulator:
         return pow(2, self.__thershold_obj.max_bits) - 1
 
     def convert_a2d_to_amp(self, current_data_samples):
-        current_data_samples = [round(current_data_sample * self.__thershold_obj.max_current / self.__max_possible_reading)
-                                for current_data_sample in current_data_samples]
+        current_data_samples = [
+            round(current_data_sample * self.__thershold_obj.max_current / self.__max_possible_reading)
+            for current_data_sample in current_data_samples]
 
         return current_data_samples
 
