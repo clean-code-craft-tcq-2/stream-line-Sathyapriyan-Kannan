@@ -66,6 +66,7 @@ void ReadDataFromConsole(int current[], int temperature[])
         scanf("%50s",unusedData);
         scanf("%50s",unusedData);
         scanf("%d",&temperature[i]);
+        printf("Current: %d, Temperature: %d\n",current[i],temperature[i]);
     }
 }
 
