@@ -10,9 +10,8 @@ void printOnConsole(char message[])
 
 float calcMovingAverage(int data[], int size, int winLength)
 {
-    float sum = 0.0;
-    float average = 0.0;
-    if(size < WindowLength)
+    float sum = 0.0, average = 0.0;
+    if(size < winLength)
     {
         for(int i=0; i<= size; i++)
         {
@@ -71,7 +70,7 @@ void receiverSideHandling(int current[], int temperature[], int winLength, void 
                          void (*fn_ptrReadData)(int current[], int temperature[], int index))
 {
   int maxTemp, minTemp, maxCurrent, minCurrent;
-  float averageCurrentof5Samples, averagTemperatureof5Samples;
+  float movingAvgofCurrent, movingAvgofTemperature;
   char message[200];
   for(int i=0; i<NoOfSamples; i++)
   {
@@ -80,8 +79,8 @@ void receiverSideHandling(int current[], int temperature[], int winLength, void 
         minTemp = findMinimum(temperature,i);
         maxCurrent = findMaximum(current,i);
         minCurrent = findMinimum(current,i);
-        averageCurrentof5Samples = calcMovingAverage(current,i,winLength);
-        averagTemperatureof5Samples = calcMovingAverage(temperature,i,winLength);
+        movingAvgofCurrent = calcMovingAverage(current,i,winLength);
+        movingAvgofTemperature = calcMovingAverage(temperature,i,winLength);
         sprintf(message,"MinTemperature: %d, MaxTemperature: %d, AverageTemperature: %.2f, MinCurrent: %d, MaxCurrent: %d, AverageCurrennt: %.2f",
                 minTemp,maxTemp,averagTemperatureof5Samples,minCurrent,maxCurrent,averageCurrentof5Samples);
         fn_ptrPrintOutput(message);
