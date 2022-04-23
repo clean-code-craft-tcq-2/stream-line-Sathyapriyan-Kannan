@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "BMSDataReceiver.h"
 
 void printOnConsole(char message[])
@@ -58,18 +59,16 @@ int findMaximum(int data[])
 
 void ReadDataFromConsole(int current[], int temperature[])
 {
-    char unusedData[50]; 
-    int currentInASCII, temperatureinASCII;
+    char dataFromConsole[100]; 
     for(int i=0; i<NoOfSamples; i++)
     {
-        scanf("%50s",unusedData);
-        scanf("%d",&currentInASCII);
-        scanf("%50s",unusedData);
-        scanf("%50s",unusedData);
-        scanf("%d",&temperatureinASCII);
-        //current[i] = atoi(currentInASCII);
-        //temperature[i] = atoi(temperatureinASCII);
-        printf("Current: %d, Temperature: %d\n",currentInASCII,temperatureinASCII);
+        char *singleParameter;
+        scanf ("%50s", dataFromConsole);
+        singleParameter = strtok(dataFromConsole, ",");
+        current[i] = atoi(singleParameter);
+        singleParameter = strtok(NULL, ",");
+        temperature[i] = atoi(singleParameter);
+        printf("Current: %d, Temperature: %d\n",current[i],temperature[i]);
     }
 }
 
