@@ -66,13 +66,13 @@ void ReadDataFromConsole(int current[], int temperature[], int index)
     temperature[index] = atoi(singleParameter);
 }
 
-void receiverSideHandling(int current[], int temperature[], int winLength, void (*fn_ptrPrintOutput)(char message[]),
+void receiverSideHandling(int current[], int temperature[], int totalNumberOfSamples, int winLength, void (*fn_ptrPrintOutput)(char message[]),
                          void (*fn_ptrReadData)(int current[], int temperature[], int index))
 {
   int maxTemp, minTemp, maxCurrent, minCurrent;
   float movingAvgofCurrent, movingAvgofTemperature;
   char message[200];
-  for(int i=0; i<NoOfSamples; i++)
+  for(int i=0; i<totalNumberOfSamples; i++)
   {
         fn_ptrReadData(current,temperature,i);
         maxTemp = findMaximum(temperature,i);
@@ -82,7 +82,7 @@ void receiverSideHandling(int current[], int temperature[], int winLength, void 
         movingAvgofCurrent = calcMovingAverage(current,i,winLength);
         movingAvgofTemperature = calcMovingAverage(temperature,i,winLength);
         sprintf(message,"MinTemperature: %d, MaxTemperature: %d, AverageTemperature: %.2f, MinCurrent: %d, MaxCurrent: %d, AverageCurrennt: %.2f",
-                minTemp,maxTemp,averagTemperatureof5Samples,minCurrent,maxCurrent,averageCurrentof5Samples);
+                minTemp,maxTemp,movingAvgofTemperature,minCurrent,maxCurrent,movingAvgofCurrent);
         fn_ptrPrintOutput(message);
   }
 }
