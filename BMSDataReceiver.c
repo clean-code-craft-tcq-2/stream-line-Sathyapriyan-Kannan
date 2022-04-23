@@ -26,7 +26,7 @@ float calcMovingAverage(int data[], int size, int winLength)
             sum += data[i];
         }
     }
-    average = sum/(float)WindowLength;
+    average = sum/(float)winLength;
     return average;
 }
 
@@ -80,7 +80,7 @@ void receiverSideHandling(int current[], int temperature[], int winLength, void 
         minTemp = findMinimum(temperature,i);
         maxCurrent = findMaximum(current,i);
         minCurrent = findMinimum(current,i);
-        averageCurrentof5Samples = calcMovingAverage(current,i);
+        averageCurrentof5Samples = calcMovingAverage(current,i,winLength);
         averagTemperatureof5Samples = calcMovingAverage(temperature,i,winLength);
         sprintf(message,"MinTemperature: %d, MaxTemperature: %d, AverageTemperature: %.2f, MinCurrent: %d, MaxCurrent: %d, AverageCurrennt: %.2f",
                 minTemp,maxTemp,averagTemperatureof5Samples,minCurrent,maxCurrent,averageCurrentof5Samples);
