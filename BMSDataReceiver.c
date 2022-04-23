@@ -8,7 +8,7 @@ void printOnConsole(char message[])
     printf("%s\n",message);
 }
 
-float calcMovingAverage(int data[], int size)
+float calcMovingAverage(int data[], int size, int winLength)
 {
     float sum = 0.0;
     float average = 0.0;
@@ -67,7 +67,7 @@ void ReadDataFromConsole(int current[], int temperature[], int index)
     temperature[index] = atoi(singleParameter);
 }
 
-void receiverSideHandling(int current[], int temperature[], void (*fn_ptrPrintOutput)(char message[]),
+void receiverSideHandling(int current[], int temperature[], int winLength, void (*fn_ptrPrintOutput)(char message[]),
                          void (*fn_ptrReadData)(int current[], int temperature[], int index))
 {
   int maxTemp, minTemp, maxCurrent, minCurrent;
@@ -81,7 +81,7 @@ void receiverSideHandling(int current[], int temperature[], void (*fn_ptrPrintOu
         maxCurrent = findMaximum(current,i);
         minCurrent = findMinimum(current,i);
         averageCurrentof5Samples = calcMovingAverage(current,i);
-        averagTemperatureof5Samples = calcMovingAverage(temperature,i);
+        averagTemperatureof5Samples = calcMovingAverage(temperature,i,winLength);
         sprintf(message,"MinTemperature: %d, MaxTemperature: %d, AverageTemperature: %.2f, MinCurrent: %d, MaxCurrent: %d, AverageCurrennt: %.2f",
                 minTemp,maxTemp,averagTemperatureof5Samples,minCurrent,maxCurrent,averageCurrentof5Samples);
         fn_ptrPrintOutput(message);
