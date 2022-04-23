@@ -63,10 +63,10 @@ void receiverSideHandling(int current[], int temperature[], void (*fn_ptrPrintOu
   for(int i=0; i<NoOfSamples; i++)
   {
         ReadDataFromConsole(current,temperature,i);
-        maxTemp = findMaximum(current,i);
-        minTemp = findMinimum(current,i);
-        maxCurrent = findMaximum(temperature,i);
-        minCurrent = findMinimum(temperature,i);
+        maxTemp = findMaximum(temperature,i);
+        minTemp = findMinimum(temperature,i);
+        maxCurrent = findMaximum(current,i);
+        minCurrent = findMinimum(current,i);
         averageCurrentof5Samples = findAverage(current);
         averagTemperatureof5Samples = findAverage(temperature);
         sprintf(message,"MinTemperature: %d, MaxTemperature: %d, AverageTemperature: %f, MinCurrent: %d, MaxCurrent: %d, AverageCurrennt: %f",
