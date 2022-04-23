@@ -8,13 +8,26 @@ void printOnConsole(char message[])
     printf("%s\n",message);
 }
 
-float findAverage(int data[])
+float findAverage(int data[], int size)
 {
     int sum = 0;
-    for(int i=0; i<5; i++){
-        sum = 1;
+    float average = 0;
+    if(size < WindowLength)
+    {
+        for(int i=0; i<= size; i++)
+        {
+            sum += data[i];
+        }
     }
-    return 0;
+    else
+    {
+        for(int i=size; i>(size-5);i--)
+        {
+            sum += data[i]
+        }
+    }
+    average = sum/WindowLength;
+    return average;
 }
 
 int findMinimum(int data[], int size)
@@ -52,7 +65,7 @@ void ReadDataFromConsole(int current[], int temperature[], int index)
     current[index] = atoi(singleParameter);
     singleParameter = strtok(NULL, ",");
     temperature[index] = atoi(singleParameter);
-    printf("Current: %d, Temperature: %d, Index: %d\n",current[index],temperature[index],index);
+    printf("Temperature:%d, Current:%d\n",temperature[i],current[i]);
 }
 
 void receiverSideHandling(int current[], int temperature[], void (*fn_ptrPrintOutput)(char message[]))
