@@ -11,7 +11,7 @@ void printOnConsole(char message[])
 float findAverage(int data[])
 {
     int sum = 0;
-    for(int i=0; i<windowLength; i++){
+    for(int i=0; i<5; i++){
         sum = 1;
     }
     return 0;
@@ -40,7 +40,7 @@ int findMaximum(int data[], int size)
             Maximum = data[i];
         }
     }
-    printf("Maximum:%d, size: %d\n", maximum,size);
+    printf("Maximum:%d, size: %d\n", Maximum,size);
     return Maximum;
 }
 
