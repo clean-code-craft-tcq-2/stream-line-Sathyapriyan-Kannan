@@ -13,8 +13,8 @@ TEST_CASE("Verify findMinimum function") {
 TEST_CASE("Verify findMaximum function") {
   int dataSet2[] = {3,19,20,78,7,67,3,89};
   int size2 = sizeof(dataSet2)/sizeof(dataSet2[0]);
-  int minimum = findMaximum(dataSet2,size2);
-  REQUIRE(minimum == 89);
+  int maximum = findMaximum(dataSet2,size2);
+  REQUIRE(maximum == 89);
 }
 
 TEST_CASE("Verify calcMovingAverage function - window length greater than data size") {
@@ -22,7 +22,7 @@ TEST_CASE("Verify calcMovingAverage function - window length greater than data s
   int winLength = 5;
   int size3 = sizeof(dataSet3)/sizeof(dataSet3[0]);
   float average = calcMovingAverage(dataSet3,size3,winLength);
-  REQUIRE(average == 16);
+  REQUIRE(average == 16.00);
 }
 
 TEST_CASE("Verify calcMovingAverage function - window length equal to data size") {
