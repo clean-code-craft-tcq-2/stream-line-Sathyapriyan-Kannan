@@ -28,7 +28,7 @@ TEST_CASE("Verify calcMovingAverage function - window length greater than data s
 TEST_CASE("Verify calcMovingAverage function - window length equal to data size") {
   int dataSet4[] = {15,20,45,19,23};
   int winLength = 5;
-  int size4 = sizeof(dataSet)/sizeof(dataSet[0]);
+  int size4 = sizeof(dataSet4)/sizeof(dataSet4[0]);
   float average = calcMovingAverage(dataSet4,size4,winLength);
   REQUIRE(average == 24.40);
 }
