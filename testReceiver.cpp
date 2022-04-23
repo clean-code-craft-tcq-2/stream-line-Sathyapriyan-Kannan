@@ -7,7 +7,6 @@ TEST_CASE("Verify findMinimum function") {
   int dataSet1[] = {19,20,78,100,7,67,3,89};
   int size1 = sizeof(dataSet1)/sizeof(dataSet1[0]);
   int minimum = findMinimum(dataSet1,(size1-1));
-  printf("%d,%d\n",size1,minimum);
   REQUIRE(minimum == 3);
 }
 
