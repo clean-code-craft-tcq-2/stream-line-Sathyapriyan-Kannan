@@ -4,40 +4,40 @@
 #include "BMSDataReceiver.h"
 
 TEST_CASE("Verify findMinimum function") {
-  int dataSet[] = {19,20,78,100,7,67,3,89};
-  int size = sizeof(dataSet)/sizeof(dataSet[0]);
-  int minimum = findMinimum(dataSet,size);
+  int dataSet1[] = {19,20,78,100,7,67,3,89};
+  int size1 = sizeof(dataSet1)/sizeof(dataSet1[0]);
+  int minimum = findMinimum(dataSet1,size1);
   REQUIRE(minimum == 3);
 }
 
 TEST_CASE("Verify findMaximum function") {
-  int dataSet[] = {3,19,20,78,7,67,3,89};
-  int size = sizeof(dataSet)/sizeof(dataSet[0]);
-  int minimum = findMaximum(dataSet,size);
+  int dataSet2[] = {3,19,20,78,7,67,3,89};
+  int size2 = sizeof(dataSet2)/sizeof(dataSet2[0]);
+  int minimum = findMaximum(dataSet2,size2);
   REQUIRE(minimum == 89);
 }
 
 TEST_CASE("Verify calcMovingAverage function - window length greater than data size") {
-  int dataSet[] = {15,20,45};
+  int dataSet3[] = {15,20,45};
   int winLength = 5;
-  int size = sizeof(dataSet)/sizeof(dataSet[0]);
-  float average = calcMovingAverage(dataSet,size,winLength);
+  int size3 = sizeof(dataSet3)/sizeof(dataSet3[0]);
+  float average = calcMovingAverage(dataSet3,size3,winLength);
   REQUIRE(average == 16);
 }
 
 TEST_CASE("Verify calcMovingAverage function - window length equal to data size") {
-  int dataSet[] = {15,20,45,19,23};
+  int dataSet4[] = {15,20,45,19,23};
   int winLength = 5;
-  int size = sizeof(dataSet)/sizeof(dataSet[0]);
-  float average = calcMovingAverage(dataSet,size,winLength);
+  int size4 = sizeof(dataSet)/sizeof(dataSet[0]);
+  float average = calcMovingAverage(dataSet4,size4,winLength);
   REQUIRE(average == 24.40);
 }
 
-TEST_CASE("Verify calcMovingAverage function - window length greater than data size") {
-  int dataSet[] = {15,20,45,19,23,24,56,23};
+TEST_CASE("Verify calcMovingAverage function - window length less than data size") {
+  int dataSet5[] = {15,20,45,19,23,24,56,23};
   int winLength = 5;
-  int size = sizeof(dataSet)/sizeof(dataSet[0]);
-  float average = calcMovingAverage(dataSet,size,winLength);
+  int size5 = sizeof(dataSet5)/sizeof(dataSet5[0]);
+  float average = calcMovingAverage(dataSet5,size5,winLength);
   REQUIRE(average == 29.00);
 }
 
