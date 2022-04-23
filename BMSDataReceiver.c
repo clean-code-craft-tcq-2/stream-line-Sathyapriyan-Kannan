@@ -20,7 +20,7 @@ float findAverage(int data[])
 int findMinimum(int data[], int size)
 {
     int Minimum = data[0];
-    for(int i=1; i<size; i++)
+    for(int i=1; i<=size; i++)
     {
         if(Minimum > data[i])
         {
@@ -33,14 +33,13 @@ int findMinimum(int data[], int size)
 int findMaximum(int data[], int size)
 {
     int Maximum = data[0];
-    for(int i=1; i<size; i++)
+    for(int i=1; i<=size; i++)
     {
         if(Maximum < data[i])
         {
             Maximum = data[i];
         }
     }
-    printf("Maximum:%d, size: %d\n", Maximum,size);
     return Maximum;
 }
 
