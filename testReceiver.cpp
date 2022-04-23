@@ -9,5 +9,5 @@ TEST_CASE("Verify Read parameters from file - Valid Case") {
   fn_ptrPrintOutput = &printOnConsole;
   void (*fn_ptrReadData)(int*, int*, int);
   fn_ptrReadData = &ReadDataFromConsole;
-  receiverSideHandling(current,temperature,fn_ptrPrintOutput,fn_ptrReadData);
+  receiverSideHandling(current,temperature,WindowLength,fn_ptrPrintOutput,fn_ptrReadData);
 }
