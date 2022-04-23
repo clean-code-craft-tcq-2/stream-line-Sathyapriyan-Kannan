@@ -40,6 +40,7 @@ int findMaximum(int data[], int size)
             Maximum = data[i];
         }
     }
+    printf("Maximum:%d, size: %d\n", maximum,size);
     return Maximum;
 }
 
@@ -52,7 +53,7 @@ void ReadDataFromConsole(int current[], int temperature[], int index)
     current[index] = atoi(singleParameter);
     singleParameter = strtok(NULL, ",");
     temperature[index] = atoi(singleParameter);
-    printf("Current: %d, Temperature: %d\n",current[index],temperature[index]);
+    printf("Current: %d, Temperature: %d, Index: %d\n",current[index],temperature[index],index);
 }
 
 void receiverSideHandling(int current[], int temperature[], void (*fn_ptrPrintOutput)(char message[]))
