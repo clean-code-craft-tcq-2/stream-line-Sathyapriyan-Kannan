@@ -10,31 +10,17 @@ void printOnConsole(char message[])
 
 float findAverage(int data[])
 {
-    int sum;
-    float average;
-    if(NoOfSamples >= 5)
-    {
-        for(int i=(NoOfSamples-1); i>(NoOfSamples-6);i--)
-        {
-            sum += data[i];
-        }
-        average = sum/5;
+    int sum = 0;
+    for(int i=0; i<windowLength; i++){
+        sum = 1;
     }
-    else
-    {
-        for(int i=0; i<NoOfSamples; i++)
-        {
-            sum += data[i];
-        }
-        average = sum/NoOfSamples;
-    }
-    return average;
+    return 0;
 }
 
-int findMinimum(int data[])
+int findMinimum(int data[], int size)
 {
     int Minimum = data[0];
-    for(int i=1; i<NoOfSamples; i++)
+    for(int i=1; i<size; i++)
     {
         if(Minimum > data[i])
         {
@@ -44,10 +30,10 @@ int findMinimum(int data[])
     return Minimum;
 }
 
-int findMaximum(int data[])
+int findMaximum(int data[], int size)
 {
     int Maximum = data[0];
-    for(int i=1; i<NoOfSamples; i++)
+    for(int i=1; i<size; i++)
     {
         if(Maximum < data[i])
         {
@@ -57,34 +43,35 @@ int findMaximum(int data[])
     return Maximum;
 }
 
-void ReadDataFromConsole(int current[], int temperature[])
+void ReadDataFromConsole(int current[], int temperature[], int index)
 {
     char dataFromConsole[100]; 
-    for(int i=0; i<NoOfSamples; i++)
-    {
-        char *singleParameter;
-        scanf ("%50s", dataFromConsole);
-        singleParameter = strtok(dataFromConsole, ",");
-        current[i] = atoi(singleParameter);
-        singleParameter = strtok(NULL, ",");
-        temperature[i] = atoi(singleParameter);
-        printf("Current: %d, Temperature: %d\n",current[i],temperature[i]);
-    }
+    char *singleParameter;
+    scanf ("%50s", dataFromConsole);
+    singleParameter = strtok(dataFromConsole, ",");
+    current[index] = atoi(singleParameter);
+    singleParameter = strtok(NULL, ",");
+    temperature[index] = atoi(singleParameter);
+    printf("Current: %d, Temperature: %d\n",current[index],temperature[index]);
 }
 
 void receiverSideHandling(int current[], int temperature[], void (*fn_ptrPrintOutput)(char message[]))
 {
-  int maxTemp, minTemp, maxCurrent, minCurrent;
+  int maxTemp, minTemp, maxCurrent, minCurrent, numberOfReadingRead;
   float averageCurrentof5Samples, averagTemperatureof5Samples;
   char message[200];
-  ReadDataFromConsole(current,temperature);
-  maxTemp = findMaximum(current);
-  minTemp = findMinimum(current);
-  maxCurrent = findMaximum(temperature);
-  minCurrent = findMinimum(temperature);
-  averageCurrentof5Samples = findAverage(current);
-  averagTemperatureof5Samples = findAverage(temperature);
-  sprintf(message,"MinTemperature: %d, MaxTemperature: %d, AverageTemperature: %f, MinCurrent: %d, MaxCurrent: %d, AverageCurrennt: %f",
-         minTemp,maxTemp,averagTemperatureof5Samples,minCurrent,maxCurrent,averageCurrentof5Samples);
-  fn_ptrPrintOutput(message);
+  for(int i=0; i<NoOfSamples; i++)
+  {
+        ReadDataFromConsole(current,temperature,index);
+        numberOfReadingRead = sizeof(current) / sizeof(current[0]);
+        maxTemp = findMaximum(current,numberOfReadingRead);
+        minTemp = findMinimum(current,numberOfReadingRead);
+        maxCurrent = findMaximum(temperature,numberOfReadingRead);
+        minCurrent = findMinimum(temperature,numberOfReadingRead);
+        averageCurrentof5Samples = findAverage(current);
+        averagTemperatureof5Samples = findAverage(temperature);
+        sprintf(message,"MinTemperature: %d, MaxTemperature: %d, AverageTemperature: %f, MinCurrent: %d, MaxCurrent: %d, AverageCurrennt: %f",
+                minTemp,maxTemp,averagTemperatureof5Samples,minCurrent,maxCurrent,averageCurrentof5Samples);
+        fn_ptrPrintOutput(message);
+  }
 }
